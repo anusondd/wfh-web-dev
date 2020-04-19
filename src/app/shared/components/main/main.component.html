@@ -1,0 +1,58 @@
+<div class="sidenav">
+    <div class="avatar">
+        <img src="../../../../assets/images/avatar_nick.png" alt="">
+        <p>Admin Parking</p>
+    </div>
+    <!-- <a *ngFor="let menu of menus; let i = index" [routerLink]="[menu.url]" routerLinkActive="link-active">
+    <i class="material-icons md-light md-36 align-middle">{{menu.icon}}</i>
+    <span class="align-middle">{{menu.title}}</span>
+  </a> -->
+    <!-- <p class="text-light" >{{menus | json}}</p> -->
+    <ng-container *ngFor="let menu of menus;let i = index">
+        <a *ngIf="(menu.child.length==0)" [routerLink]="[menu.url]" routerLinkActive="link-active">
+            <!-- <p class="text-light">{{menu.child | json}}</p> -->
+            <i class="material-icons md-light md-36 align-middle">{{menu.icon}}</i>
+            <span class="align-middle">{{menu.title}}</span>
+        </a>
+        <a *ngIf="(menu.child.length!=0)" (click)="togleMenu(i,menu.span)" routerLinkActive="link-active">
+            <!-- <p class="text-light">{{menu.child | json}}</p> -->
+            <i class="material-icons md-light md-36 align-middle">{{menu.icon}}</i>
+            <span class="align-middle">{{menu.title}}</span>
+        </a>
+        <ng-container *ngIf="menu.span">
+            <ng-container *ngFor="let child of menu.child;let i = index">
+                <a [routerLink]="[child.url]" class="pl-3" routerLinkActive="link-active">
+                    <i class="material-icons md-light md-36 align-middle">{{child.icon}}</i>
+                    <span class="align-middle">{{child.title}}</span>
+                </a>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <a class="logout" (click)="logout()">
+        <i class="material-icons md-light md-36 align-middle">input</i>
+        <span class="align-middle">Logout</span>
+    </a>
+</div>
+<div class="main">
+    <div class="navbar">
+        <div class="row col-12">
+            <div class="col-9">
+                <h3 class="text-light">{{title}}</h3>
+            </div>
+            <div class="col-3">
+                <button type="button" *ngIf="language=='th'" (click)="changeLang('en')" class="btn btn-light mb-2">
+                    <img src="../../../../assets/images/th.png" height="20px" alt=""> th
+                </button>
+                <button type="button" *ngIf="language=='en'" (click)="changeLang('th')" class="btn btn-light mb-2">
+                    <img src="../../../../assets/images/en.png" height="20px" alt=""> en
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

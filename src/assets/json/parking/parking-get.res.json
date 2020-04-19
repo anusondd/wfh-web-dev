@@ -1,0 +1,154 @@
+{
+  "title": "หัวเรื่อง",
+  "description": "รายละเอียด",
+  "data": [
+    {
+      "_id": 1,
+      "parkingID": "",
+      "name": "A001",
+      "empty": 4,
+      "parking": 2,
+      "reserve": 1,
+      "disconnect": 1,
+      "parkingBox": [
+        {
+          "_id": "1",
+          "rowID": "",
+          "name": "A001-1",
+          "sensorID": "59685",
+          "status": "empty"
+        },
+        {
+          "_id": "2",
+          "rowID": "",
+          "name": "A001-2",
+          "sensorID": "59685",
+          "status": "reserved"
+        },
+        {
+          "_id": "3",
+          "rowID": "",
+          "name": "A001-3",
+          "sensorID": "59685",
+          "status": "parked"
+        },
+        {
+          "_id": "4",
+          "rowID": "",
+          "name": "A001-4",
+          "sensorID": "59685",
+          "status": "empty"
+        },
+        {
+          "_id": "5",
+          "rowID": "",
+          "name": "A001-5",
+          "sensorID": "59685",
+          "status": "parked"
+        },
+        {
+          "_id": "6",
+          "rowID": "",
+          "name": "A001-6",
+          "sensorID": "59685",
+          "status": "offline"
+        },
+        {
+          "_id": "7",
+          "rowID": "",
+          "name": "A001-7",
+          "sensorID": "59685",
+          "status": "empty"
+        },
+        {
+          "_id": "8",
+          "rowID": "",
+          "name": "A001-8",
+          "sensorID": "59685",
+          "status": "empty"
+        }
+      ]
+    },
+    {
+        "_id": 2,
+        "parkingID": "",
+        "name": "A002",
+        "empty": 6,
+        "parking": 4,
+        "reserve": 0,
+        "disconnect": 0,
+        "parkingBox": [
+          {
+            "_id": "9",
+            "rowID": "",
+            "name": "A002-1",
+            "sensorID": "59685",
+            "status": "parked"
+          },
+          {
+            "_id": "10",
+            "rowID": "",
+            "name": "A002-2",
+            "sensorID": "59685",
+            "status": "parked"
+          },
+          {
+            "_id": "11",
+            "rowID": "",
+            "name": "A002-3",
+            "sensorID": "59685",
+            "status": "parked"
+          },
+          {
+            "_id": "12",
+            "rowID": "",
+            "name": "A002-4",
+            "sensorID": "59685",
+            "status": "empty"
+          },
+          {
+            "_id": "13",
+            "rowID": "",
+            "name": "A002-5",
+            "sensorID": "59685",
+            "status": "parked"
+          },
+          {
+            "_id": "14",
+            "rowID": "",
+            "name": "A002-6",
+            "sensorID": "59685",
+            "status": "empty"
+          },
+          {
+            "_id": "15",
+            "rowID": "",
+            "name": "A002-7",
+            "sensorID": "59685",
+            "status": "empty"
+          },
+          {
+            "_id": "16",
+            "rowID": "",
+            "name": "A002-8",
+            "sensorID": "59685",
+            "status": "empty"
+          },
+          {
+            "_id": "17",
+            "rowID": "",
+            "name": "A002-9",
+            "sensorID": "59685",
+            "status": "empty"
+          },
+          {
+            "_id": "18",
+            "rowID": "",
+            "name": "A002-10",
+            "sensorID": "59685",
+            "status": "empty"
+          }
+        ]
+      }
+  ]
+}

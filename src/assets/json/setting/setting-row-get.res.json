@@ -1,0 +1,29 @@
+{
+    "title": "หัวเรื่อง",
+    "description": "รายละเอียด",
+    "data": {
+        "_id": "1",
+        "parkingID":"",
+        "name":"",
+        "empty":0,
+        "parking":0,
+        "reserve":0,
+        "disconnect":0,
+        "parkingBox": [
+            {
+                "_id":"",
+                "rowID":"",
+                "name":"",
+                "sensorID":"",
+                "status":""
+            },
+            {
+                "_id":"",
+                "rowID":"",
+                "name":"",
+                "sensorID":"",
+                "status":""
+            }
+        ]
+    }
+}

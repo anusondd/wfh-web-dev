@@ -1,0 +1,188 @@
+h1 {
+    color: white;
+    font-size: 28px;
+    // margin-top: 6px;
+}
+h2 {
+    font-size: 26px;
+    text-align: center;
+}
+
+.number {
+    font-size: 20px;
+    font-weight: bold;
+}
+span {
+    color: white;
+    font-size: 18px;
+    margin-left: 10px;
+}
+#circle-green { 
+    width: 20px;
+    height: 20px;
+    background: rgb(20, 180, 20);
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+}
+#circle-red { 
+    width: 20px;
+    height: 20px;
+    background: rgb(219, 35, 35);
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+#circle-blue { 
+    width: 20px;
+    height: 20px;
+    background: rgb(3, 139, 218);
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+#circle-grey { 
+    width: 20px;
+    height: 20px;
+    background: grey;
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+.container {
+    border: 1px solid #ccc;
+    margin-bottom: 2rem;
+}
+
+
+
+.chart-card {
+    width: 100%;
+    background-color: #d7d7d7;
+}
+h1 {
+    color: white;
+    font-size: 28px;
+    // margin-top: 6px;
+}
+h2 {
+    font-size: 26px;
+    text-align: center;
+}
+
+.number {
+    font-size: 20px;
+    font-weight: bold;
+}
+.text-title-card {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+span {
+    color: white;
+    font-size: 18px;
+    margin-left: 10px;
+}
+#circle-green { 
+    width: 20px;
+    height: 20px;
+    background: rgb(20, 180, 20);
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+}
+#circle-red { 
+    width: 20px;
+    height: 20px;
+    background: rgb(219, 35, 35);
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+#circle-blue { 
+    width: 20px;
+    height: 20px;
+    background: rgb(3, 139, 218);
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+#circle-grey { 
+    width: 20px;
+    height: 20px;
+    background: grey;
+    -moz-border-radius: 70px; 
+    -webkit-border-radius: 70px; 
+    border-radius: 70px;
+    margin-top: 4px;
+    margin-left: 40px;
+}
+
+.parked-card {
+    width: 10%;
+    height: 150px;
+    border-top: 10px solid rgb(255, 255, 255);
+    border-left: 5px solid rgb(255, 255, 255);
+    border-right: 5px solid rgb(255, 255, 255);
+    background-color: rgba(211, 211, 211, 0);
+    margin-left: -5px;
+
+}
+.empty-status {
+    background-color: rgb(20, 180, 20);
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    height: 25px;
+    padding-top: 2px;
+}
+.parked-status {
+    background-color: rgb(219, 35, 35);
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    height: 25px;
+    padding-top: 2px;
+}
+.reserved-status {
+    background-color: rgb(3, 139, 218);
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    height: 25px;
+    padding-top: 2px;
+}
+.offline-status {
+    background-color: grey;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    height: 25px;
+    padding-top: 2px;
+}
+.margin {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 2rem;
+}

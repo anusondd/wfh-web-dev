@@ -1,0 +1,61 @@
+<div *ngIf="statusForm" class="card border bg-dark border-light parking-box">
+  <div class="card-body text-white">
+    <div class="d-flex justify-content-center mb-2" [class.bg-gray-4]="box.status=='reserve'"
+      [class.text-dark]="box.status=='reserve'" [class.bg-primary]="box.status=='parking'"
+      [class.bg-danger]="box.status=='disconnect'" [class.bg-success]="box.status=='empty'">
+      {{ 'setting.manage.box.BoxName' | translate }} : {{box.name}}
+    </div>
+    <div class="d-flex justify-content-center mb-2">
+        {{ 'setting.manage.box.ID' | translate }} : {{box.sensorID}}
+    </div>
+    <div class="d-flex justify-content-center mb-2">
+        {{ 'setting.manage.box.Status' | translate }} : {{box.status}}
+    </div>
+    <div class="d-flex justify-content-center mb-2">
+      <button type="button" class="btn btn-light ml-2" (click)="onEdit(statusForm)">
+        <i class="material-icons md-light md-36 align-middle btn-icon">edit</i>
+        <span class="btn-content">{{ 'setting.manage.box.Edit' | translate }}</span>
+      </button>
+      <button type="button" class="btn btn-light ml-2" (click)="selectBox(i,j,box)">
+        <i class="material-icons md-light md-36 align-middle btn-icon">delete_forever</i>
+        <span class="btn-content">{{ 'setting.manage.box.Remove' | translate }}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!statusForm" class="card border bg-dark border-light parking-box">
+  <div class="card-body text-white" [formGroup]="formBox">
+    <div class="d-flex justify-content-center">
+      <div class="col-12 m-2">
+        <validation-field-group [group]="formBox" controlName="name" [formSubmitAttempt]="formSubmitAttempt">
+          <input class="form-control" type="text" [formControlName]="'name'" placeholder="BoxName" />
+        </validation-field-group>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="col-12 m-2">
+        <validation-field-group [group]="formBox" controlName="sensorID" [formSubmitAttempt]="formSubmitAttempt">
+          <!-- <input class="form-control" type="number" [formControlName]="'sensorID'" placeholder="ID Sensor" /> -->
+          <ng-select [ngClass]="'text-left'" [formControlName]="'sensorID'" [clearable]="false" [items]="senseorList"
+            bindLabel="ID" bindValue="ID" [markFirst]="true" placeholder="โปรดระบุ">
+          </ng-select>
+        </validation-field-group>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3" [class.loading]="loading" [class.btn-loading]="loading">
+      <ngx-loading [show]="loading" [config]="config" [template]="loadingTemplate"></ngx-loading>
+      <ng-container *ngIf="!loading">
+        <button type="button" class="btn btn-light ml-2" (click)="onSubmit(statusForm)">
+          <i class="material-icons md-light md-36 align-middle btn-icon">save</i>
+          <span class="btn-content">{{'save' | translate }}</span>
+        </button>
+        <button type="button" class="btn btn-light ml-2" (click)="closeForm(statusForm)">
+          <i class="material-icons md-light md-36 align-middle btn-icon">cancel</i>
+          <span class="btn-content">{{'cancel' | translate }}</span>
+        </button>
+      </ng-container>
+    </div>
+  </div>
+</div>

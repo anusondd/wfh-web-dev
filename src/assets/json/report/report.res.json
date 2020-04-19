@@ -1,0 +1,13 @@
+{
+    "title": "หัวเรื่อง",
+    "description": "รายละเอียด",
+    "data": [
+        {
+            "_id": "1",
+            "sensorID": "",
+            "parkingBoxName": "",
+            "status": "",
+            "timestamp": ""
+        }
+    ]
+}

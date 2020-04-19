@@ -1,0 +1,6 @@
+<!-- <div [class.has-error]="formGroup.controls[formControlName].invalid && (formGroup.controls[formControlName].dirty || formGroup.controls[formControlName].touched)"> -->
+<div [class]="class" [class.has-error]="hasError()">
+<!-- <div [class.has-error]="formGroup | hasFieldControlersError: formControlName"> -->
+  <ng-content></ng-content>
+  <validation-message *ngIf="!nonValidationMessage" [inputName]="inputName" [control]="formGroup.controls[formControlName]" [submit]="formSubmitAttempt" [cssClass]="class" [requiredSelect]="requiredSelect"></validation-message>
+</div>

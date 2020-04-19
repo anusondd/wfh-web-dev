@@ -1,0 +1,11 @@
+<!-- <div class="row mb-3">
+  <div class="col-10">
+    <h1>{{ 'counter.title' | translate }}</h1>
+  </div>
+</div> -->
+<div class="row d-flex align-items-center m-auto">
+  <i class="material-icons md-light md-36 align-middle text-light btn m-2 btn-primary">arrow_downward</i><span>{{'counter.In' | translate}} : </span><span class="number">{{counterState.in}}</span>
+  <i class="material-icons md-light md-36 align-middle text-light btn m-2 btn-secondary">arrow_upward</i><span>{{'counter.Out' | translate}} : </span><span class="number">{{counterState.out}}</span>
+  <i class="material-icons md-light md-36 align-middle text-light btn m-2 btn-success">directions_car</i><span>{{'counter.usePark' | translate}} : </span><span class="number">{{counterState.usePark}}</span>
+  <i class="material-icons md-light md-36 align-middle text-light btn m-2 btn-info">remove_circle_outline</i><span>{{'counter.noPark' | translate}} : </span><span class="number">{{counterState.noPark}}</span>
+</div>

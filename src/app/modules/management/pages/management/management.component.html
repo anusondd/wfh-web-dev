@@ -1,0 +1,60 @@
+<!-- <div style="margin-bottom: 3rem;">
+  <div class="row">
+    <div class="col-4">
+      <h1>Sensor Status</h1>
+    </div>
+    <div class="col-8">
+      <div class="row" style="padding-top: 8px;">
+        <div id="circle-green"></div><span>Empty : </span><span class="number">{{empty}}</span>
+        <div id="circle-red"></div><span>Parked : </span><span class="number">{{parked}}</span>
+        <div id="circle-blue"></div><span>Reserved : </span><span class="number">{{reserved}}</span>
+        <div id="circle-grey"></div><span>Offline : </span><span class="number">{{offline}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="margin">
+  <div class="row" style="margin-bottom: 2rem;" *ngFor="let row of parkingDataList; let i = index">
+    <div class="col-2">
+      <div class="card bg-light mb-3" style="margin-right: 2rem;">
+        <div class="card-header" style="background-color: rgb(34, 34, 34); text-align: center;">
+          <span class="text-title-card">{{row.name}}</span>
+        </div>
+        <div class="card-body" style="background-color: rgb(197, 197, 197);">
+          <h5 class="card-title" style="text-align: center;">{{row.empty}}</h5>
+          <p class="card-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-10">
+      <div class="row">
+        <div class="parked-card" *ngFor="let col of row.parkingBox; let j = index" (click)="selectBox(i,j,col)" >
+          <div class="empty-status" *ngIf="col.status === 'empty'">{{col.name}}</div>
+          <div class="parked-status" *ngIf="col.status === 'parked'">{{col.name}}</div>
+          <div class="reserved-status" *ngIf="col.status === 'reserved'">{{col.name}}</div>
+          <div class="offline-status" *ngIf="col.status === 'offline'">{{col.name}}</div>
+          <div align="center" *ngIf="col.status === 'parked'">
+            <div style="margin-top: 5px;">
+              <img src="../../../../assets/images/truck.png" height="110px" width="90%">
+            </div>
+          </div>
+          <div align="center" *ngIf="col.status === 'reserved'">
+            <div style="margin-top: 30px;">
+              <img src="../../../../assets/images/traffic-cone.png" height="90%" width="60%">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- sensor-stats -->
+<app-sensor-stats></app-sensor-stats>
+<!-- sensor-stats -->
+
+<!-- Parking -->
+<app-parking-stats [optionCtrl]="true" ></app-parking-stats>
+<!-- Parking -->

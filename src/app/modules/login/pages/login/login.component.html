@@ -1,0 +1,60 @@
+<div class="bg-login-image ">
+    <div class="div200">
+    </div>
+    <div class="col-lg-4">
+        <div class="d-flex justify-content-end">
+            <ng-select [(ngModel)]="language" [items]="languageList" bindLabel="name" bindValue="id" [multiple]="false" [readonly]="false" [searchable]="false" [clearable]="false" placeholder="Select" class="col-6" (change)="changeLang(language)">
+                <ng-template ng-label-tmp let-item="item">
+                    <img class="m-1" height="15" width="15" [src]="item.img" />
+                    <b>{{item.name}}</b>
+                </ng-template>
+            </ng-select>
+        </div>
+        <div class="mar-2">
+            <div class="text-left">
+                <h1 class="h1 text-main mb-1">{{ 'login.title' | translate }}</h1>
+                <p class="text-main mb-1">
+                    {{ 'login.description' | translate }}</p>
+                <p class="text-danger" *ngIf="message">{{ 'login.message_error' | translate }}</p>
+            </div>
+        </div>
+        <form class="user" [formGroup]="form">
+
+            <validation-field-group [group]="form" [controlName]="'username'" [formSubmitAttempt]="formSubmitAttempt">
+                <!-- <input type="text" formControlName="username" placeholder="Enter Username..." /> -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control m-0" formControlName="username" placeholder="Enter Username..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">@scg.com</span>
+                    </div>
+                </div>
+            </validation-field-group>
+
+            <validation-field-group [group]="form" [controlName]="'password'" [formSubmitAttempt]="formSubmitAttempt">
+                <input type="password" formControlName="password" placeholder="Password" />
+            </validation-field-group>
+            <!-- <a class="small float-right mr-1" routerLink="/login/forgot-password"
+                        routerLinkActive="active">Forget password?</a> -->
+
+
+            <!-- <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                      </div> -->
+
+            <div class="text-center">
+                <button class="button-login" (click)="login()">{{ 'login.submit' | translate }}</button>
+            </div>
+        </form>
+        <!-- <div class=" row pt-3">
+                    <hr _ngcontent-pga-c2="" class="col-4">
+                    <small class="">or</small>
+                    <hr _ngcontent-pga-c2="" class="col-4">
+                  </div> -->
+        <!-- <div class="text-center">
+                    <a class="small" href="#" routerLink="/login/register" routerLinkActive="active">Please contact
+                      admin <br> for sign up issue</a>
+                  </div> -->
+
+    </div>
+</div>

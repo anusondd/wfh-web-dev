@@ -1,0 +1,81 @@
+@import "../../../../assets/scss/variables";
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  background: url(../../../../assets/images/login.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+  .avatar {
+    display: block;
+    width: 100%;
+    color: #f1f1f1;
+    padding: 1rem;
+    text-align: center;
+    img {
+        border-radius: 50%;
+        width: 100%;
+    }
+  }
+
+  a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    color: #f1f1f1;
+    background-color: #111;
+  }
+
+  a:hover {
+    color: #8ce1ec;
+    border-bottom: solid 1px #f1f1f1;
+  }
+
+  .link-active {
+    color: #1e3fd3;
+    border-bottom: solid 1px #f1f1f1;
+  }
+
+  .logout {
+    width: 199px;
+    position: fixed;
+    bottom: 0;
+  }
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  padding: 0;
+
+  .navbar {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding: 0.5rem;
+  }
+  .content {
+    margin-top: 50px;
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,12 @@
+<div class="card-header bg-dark text-light">
+  <h2>{{"mouthReport.title" | translate }}</h2>
+</div>
+<div class="card-body">
+  <div class="chart-card">
+    <div class="chart-wrapper">
+      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+        [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" [plugins]="lineChartPlugins">
+      </canvas>
+    </div>
+  </div>
+</div>

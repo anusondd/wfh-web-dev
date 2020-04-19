@@ -1,0 +1,13 @@
+<div class="card-header bg-dark text-light">
+  <h2>{{"weekReport.title" | translate }}</h2>
+</div>
+<div class="card-body">
+  <div class="chart-card">
+    <div class="chart-wrapper">
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [colors]="barChartColors" [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+      </canvas>
+    </div>
+
+  </div>
+</div>

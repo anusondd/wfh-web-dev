@@ -1,0 +1,917 @@
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card" *ngIf="stateFrom">
+                <div class="card-header bg-custom text-light">
+                    <h1>{{ 'wfh.title' | translate }}</h1>
+                </div>
+                <div class="card-body">
+                    <div class="row ml-2 align-items-center h-400">
+                        <h1>{{ 'wfh.thank' | translate }}!</h1>
+                    </div>
+                    <div class="row ml-2 align-items-center h-400">
+                        <p>{{ 'wfh.sended' | translate }}</p>
+                    </div>
+                    <div class="row ml-2 align-items-center h-400">
+                        <a (click)="onReset()" class="text-primary">{{'wfh.sendOrther' | translate}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" *ngIf="!stateFrom">
+                <div class="card-header bg-custom text-light">
+                    <h1>{{ 'wfh.title' | translate }}</h1>
+                    <p>{{ 'wfh.description' | translate }}</p>
+                    <!-- {{utc}} -->
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-end">
+                        <ng-select [(ngModel)]="language" [items]="languageList" bindLabel="name" bindValue="id" [multiple]="false" [readonly]="false" [searchable]="false" [clearable]="false" placeholder="Select" class="col-lg-2 col-sm-6" (change)="changeLang(language)">
+                            <ng-template ng-label-tmp let-item="item">
+                                <img class="m-1" height="15" width="15" [src]="item.img" />
+                                <b>{{item.name}}</b>
+                            </ng-template>
+                        </ng-select>
+                        <button type="button" class="btn btn-outline-secondary" (click)="logOut()">
+                            <i class="material-icons md-light md-36 align-middle">input</i>
+                            <span class="align-middle">Logout</span>
+                        </button>
+                    </div>
+                    <h5 class="card-title">{{ 'wfh.welcome1' | translate }} {{name}} {{ 'wfh.welcome2' | translate }}
+                    </h5>
+                    <p class="card-text"> <span class="text-danger">*</span> {{ 'wfh.wraning' | translate }}</p>
+                    <!-- form -->
+                    <ng-container *ngIf="form" [formGroup]="form">
+
+                        <!-- question-1 -->
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h4>1.{{ 'wfh.WorkStatus.question' | translate }} <span class="text-danger">*</span>
+                                </h4>
+                                <div class="row ml-2 align-items-center">
+                                    <validation-field-group [group]="form" controlName="WorkStatus" [formSubmitAttempt]="formSubmitAttempt">
+                                        <input type="radio" value="1" [formControlName]="'WorkStatus'" aria-label="Radio button for following text input">
+                                        <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.WorkStatus.answer1' | translate }}</label>
+                                    </validation-field-group>
+                                </div>
+                                <div class="row ml-2 align-items-center">
+                                    <validation-field-group [group]="form" controlName="WorkStatus" [formSubmitAttempt]="formSubmitAttempt">
+                                        <input type="radio" value="2" [formControlName]="'WorkStatus'" aria-label="Radio button for following text input">
+                                        <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.WorkStatus.answer2' | translate }}</label>
+                                    </validation-field-group>
+                                </div>
+                                <div class="row ml-2 align-items-center">
+                                    <validation-field-group [group]="form" controlName="WorkStatus" [formSubmitAttempt]="formSubmitAttempt">
+                                        <input type="radio" value="3" [formControlName]="'WorkStatus'" aria-label="Radio button for following text input">
+                                        <label for="staticEmail" class="col-auto col-form-label">
+                                            {{ 'wfh.WorkStatus.answer3' | translate }}</label>
+                                    </validation-field-group>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- question-1 -->
+
+                        <!-- case Work from Home || Work at Office  -->
+                        <ng-container *ngIf="form.controls['WorkStatus'].value==1||form.controls['WorkStatus'].value==2">
+
+                            <!-- question-2 -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <h4>2.{{ 'wfh.CheckInTime.question' | translate }} <span class="text-danger">*</span></h4>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="CheckInTime" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="1" [formControlName]="'CheckInTime'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.CheckInTime.answer1' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="CheckInTime" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="2" [formControlName]="'CheckInTime'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.CheckInTime.answer2' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- question-2 -->
+
+                            <!-- home-check-in -->
+                            <ng-container *ngIf="form.controls['CheckInTime'].value==1">
+                                <!-- question-3 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>3.{{ 'wfh.Task1.question' | translate }}</h4>
+                                        <div class="row ml-2 align-items-center">
+                                            <input type="text" [formControlName]="'Task1'" class="col-auto form-control" placeholder="{{ 'wfh.Task1.answer1' | translate }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-3 -->
+
+                                <!-- question-4 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>4.{{ 'wfh.Task2.question' | translate }}</h4>
+                                        <div class="row ml-2 align-items-center">
+                                            <input type="text" [formControlName]="'Task2'" class="col-auto form-control" placeholder="{{ 'wfh.Task2.answer1' | translate }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-4 -->
+
+                                <!-- question-5 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>5.{{ 'wfh.Task3.question' | translate }}</h4>
+                                        <div class="row ml-2 align-items-center">
+                                            <input type="text" [formControlName]="'Task3'" class="col-auto form-control" placeholder="{{ 'wfh.Task3.answer1' | translate }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-5 -->
+
+                                <!-- question-6 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>6.{{ 'wfh.RiskLevel.question' | translate }} <span class="text-danger">*</span></h4>
+                                        <img src="../../../../../assets/images/f000.png" class="img-fluid" alt="">
+                                        <p class="font-italic">{{ 'wfh.RiskLevel.description1' | translate }}</p>
+                                        <p class="font-italic">{{ 'wfh.RiskLevel.description2' | translate }}</p>
+                                        <p class="font-italic">
+                                            {{ 'wfh.RiskLevel.description3' | translate }}</p>
+                                        <p class="font-italic">
+                                            {{ 'wfh.RiskLevel.description4' | translate }}
+                                        </p>
+                                        <p class="font-italic">
+                                            {{ 'wfh.RiskLevel.description5' | translate }}
+                                        </p>
+
+                                        <p class="font-italic">
+                                            {{ 'wfh.RiskLevel.description6' | translate }}
+                                        </p>
+                                        <p class="font-italic">{{ 'wfh.RiskLevel.description7' | translate }}</p>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="0" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer1' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="1" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer2' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="2" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer3' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="3" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer4' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="4" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer5' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="5" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer6' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-6 -->
+
+                                <!-- case F0,F1,F4,F5 -->
+                                <ng-container *ngIf="form.controls['RiskLevel'].value==0||form.controls['RiskLevel'].value==1||form.controls['RiskLevel'].value==4||form.controls['RiskLevel'].value==5">
+                                    <!-- question-7 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>7.{{ 'wfh.HealthCondition.question' | translate }} <span class="text-danger">*</span>
+                                            </h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="1" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer1' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="2" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer2' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-7 -->
+
+                                    <!-- case I'm in good -->
+                                    <ng-container *ngIf="form.controls['HealthCondition'].value==1">
+                                        <!-- question-8 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>8.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                    <span class="text-danger">*</span></h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                    </validation-field-group>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-8 -->
+
+                                        <!-- question-9 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>9.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-9 -->
+                                    </ng-container>
+                                    <!-- case I'm in good -->
+
+                                    <!-- case I'm sick -->
+                                    <ng-container *ngIf="form.controls['HealthCondition'].value==2">
+                                        <!-- question-8 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>8.{{ 'wfh.Symptoms.question' | translate }} <span class="text-danger">*</span>
+                                                </h4>
+                                                <validation-field-group [group]="form" controlName="Symptoms" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <ng-container *ngIf="symptomsList.length" [formArrayName]="'Symptoms'">
+                                                        <div class="row ml-3 form-check" *ngFor="let symptoms of symptomsList; let i = index">
+                                                            <ng-container *ngIf="symptomsList[i].name!='wfh.Symptoms.answer5'">
+                                                                <input class="form-check-input" type="checkbox" [value]="symptoms.id" id="{{'defaultCheck'+i}}" (change)="onCheckboxChange($event)">
+                                                                <label class="form-check-label" for="{{'defaultCheck'+i}}">
+                                                                    {{symptomsList[i].name | translate}}
+                                                                </label>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="symptomsList[i].name=='wfh.Symptoms.answer5'">
+                                                                <input *ngIf="!symptomsChecked" class="form-check-input" type="checkbox" [value]="symptoms.id" disabled>
+                                                                <input *ngIf="symptomsChecked" class="form-check-input" type="checkbox" checked [value]="symptoms.id" disabled>
+                                                                <input type="text" class="col-4 form-control" (change)="symptomsOrtherChange($event)" placeholder="{{'wfh.Symptoms.answer5' | translate}}">
+                                                            </ng-container>
+                                                        </div>
+                                                    </ng-container>
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                        <!-- question-8 -->
+
+                                        <!-- question-9 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>9.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                    <span class="text-danger">*</span></h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                    </validation-field-group>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-9 -->
+
+                                        <!-- question-10 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>10.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-10 -->
+                                    </ng-container>
+                                    <!-- case I'm sick -->
+                                </ng-container>
+                                <!-- case F0,F1,F4,F5 -->
+
+                                <!-- case F2,F3 -->
+                                <ng-container *ngIf="form.controls['RiskLevel'].value==2||form.controls['RiskLevel'].value==3">
+
+                                    <ng-container *ngIf="form.controls['RiskLevel'].value==2">
+                                        <!-- question-7 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>7.{{ 'wfh.F2RiskDesc.question' | translate }} <span class="text-danger">*</span></h4>
+                                                <img src="../../../../../assets/images/f001.png" class="img-fluid" alt="" srcset="">
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="F2RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="radio" value="1" [formControlName]="'F2RiskDesc'" aria-label="Radio button for following text input">
+                                                        <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F2RiskDesc.answer1' | translate }}</label>
+                                                    </validation-field-group>
+                                                </div>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="F2RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="radio" value="2" [formControlName]="'F2RiskDesc'" aria-label="Radio button for following text input">
+                                                        <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F2RiskDesc.answer2' | translate }}</label>
+                                                    </validation-field-group>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-7 -->
+                                    </ng-container>
+
+                                    <ng-container *ngIf="form.controls['RiskLevel'].value==3">
+                                        <!-- question-7 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>7.{{ 'wfh.F3RiskDesc.question' | translate }} <span class="text-danger">*</span></h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="F3RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="radio" value="1" [formControlName]="'F3RiskDesc'" aria-label="Radio button for following text input">
+                                                        <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F3RiskDesc.answer1' | translate }}</label>
+                                                    </validation-field-group>
+                                                </div>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="F3RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="radio" value="2" [formControlName]="'F3RiskDesc'" aria-label="Radio button for following text input">
+                                                        <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F3RiskDesc.answer2' | translate }}</label>
+                                                    </validation-field-group>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-7 -->
+                                    </ng-container>
+
+                                    <!-- question-8 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>8.{{ 'wfh.HealthCondition.question' | translate }} <span class="text-danger">*</span>
+                                            </h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="1" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer1' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="2" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer2' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-8 -->
+
+                                    <!-- case I'm in good -->
+                                    <ng-container *ngIf="form.controls['HealthCondition'].value==1">
+                                        <!-- question-9 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>9.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                    <span class="text-danger">*</span></h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                    </validation-field-group>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-9 -->
+
+                                        <!-- question-10 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>10.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-10 -->
+                                    </ng-container>
+                                    <!-- case I'm in good -->
+
+                                    <!-- case I'm sick -->
+                                    <ng-container *ngIf="form.controls['HealthCondition'].value==2">
+                                        <!-- question-10 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>10.{{ 'wfh.Symptoms.question' | translate }} <span class="text-danger">*</span>
+                                                </h4>
+                                                <validation-field-group [group]="form" controlName="Symptoms" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <ng-container *ngIf="symptomsList.length" [formArrayName]="'Symptoms'">
+                                                        <div class="row ml-3 form-check" *ngFor="let symptoms of symptomsList; let i = index">
+                                                            <ng-container *ngIf="symptomsList[i].name!='wfh.Symptoms.answer5'">
+                                                                <input class="form-check-input" type="checkbox" [value]="symptoms.id" id="{{'defaultCheck'+i}}" (change)="onCheckboxChange($event)">
+                                                                <label class="form-check-label" for="{{'defaultCheck'+i}}">
+                                                                    {{symptomsList[i].name | translate}}
+                                                                </label>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="symptomsList[i].name=='wfh.Symptoms.answer5'">
+                                                                <input *ngIf="!symptomsChecked" class="form-check-input" type="checkbox" [value]="symptoms.id" disabled>
+                                                                <input *ngIf="symptomsChecked" class="form-check-input" type="checkbox" checked [value]="symptoms.id" disabled>
+                                                                <input type="text" class="col-4 form-control" (change)="symptomsOrtherChange($event)" placeholder="{{'wfh.Symptoms.answer5' | translate}}">
+                                                            </ng-container>
+                                                        </div>
+                                                    </ng-container>
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                        <!-- question-10 -->
+
+                                        <!-- question-11 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>11.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                    <span class="text-danger">*</span></h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                        <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                    </validation-field-group>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-11 -->
+
+                                        <!-- question-12 -->
+                                        <div class="row mb-3">
+                                            <div class="col-12">
+                                                <h4>12.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                                <div class="row ml-2 align-items-center">
+                                                    <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- question-12 -->
+                                    </ng-container>
+                                    <!-- case I'm sick -->
+                                </ng-container>
+                                <!-- case F2,F3 -->
+                            </ng-container>
+                            <!-- home-check-in -->
+
+                            <!-- home-check-out -->
+                            <ng-container *ngIf="form.controls['CheckInTime'].value==2">
+                                <!-- question-3 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>3.{{ 'wfh.HealthCondition.question' | translate }} <span class="text-danger">*</span>
+                                        </h4>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="1" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer1' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="2" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer2' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-3 -->
+
+                                <!-- case I'm in good -->
+                                <ng-container *ngIf="form.controls['HealthCondition'].value==1">
+                                    <!-- question-4 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>4.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-4 -->
+
+                                    <!-- question-5 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>5.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-5 -->
+                                </ng-container>
+                                <!-- case I'm in good -->
+
+                                <!-- case I'm sick -->
+                                <ng-container *ngIf="form.controls['HealthCondition'].value==2">
+                                    <!-- question-4 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>4.{{ 'wfh.Symptoms.question' | translate }} <span class="text-danger">*</span>
+                                            </h4>
+                                            <validation-field-group [group]="form" controlName="Symptoms" [formSubmitAttempt]="formSubmitAttempt">
+                                                <ng-container *ngIf="symptomsList.length" [formArrayName]="'Symptoms'">
+                                                    <div class="row ml-3 form-check" *ngFor="let symptoms of symptomsList; let i = index">
+                                                        <ng-container *ngIf="symptomsList[i].name!='wfh.Symptoms.answer5'">
+                                                            <input class="form-check-input" type="checkbox" [value]="symptoms.id" id="{{'defaultCheck'+i}}" (change)="onCheckboxChange($event)">
+                                                            <label class="form-check-label" for="{{'defaultCheck'+i}}">
+                                                                {{symptomsList[i].name | translate}}
+                                                            </label>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="symptomsList[i].name=='wfh.Symptoms.answer5'">
+                                                            <input *ngIf="!symptomsChecked" class="form-check-input" type="checkbox" [value]="symptoms.id" disabled>
+                                                            <input *ngIf="symptomsChecked" class="form-check-input" type="checkbox" checked [value]="symptoms.id" disabled>
+                                                            <input type="text" class="col-4 form-control" (change)="symptomsOrtherChange($event)" placeholder="{{'wfh.Symptoms.answer5' | translate}}">
+                                                        </ng-container>
+                                                    </div>
+                                                </ng-container>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                    <!-- question-4 -->
+
+                                    <!-- question-5 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>5.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-5 -->
+
+                                    <!-- question-6 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>6.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-6 -->
+                                </ng-container>
+                                <!-- case I'm sick -->
+
+                            </ng-container>
+                            <!-- home-check-out -->
+
+                        </ng-container>
+                        <!-- case Work from Home -->
+
+                        <!-- case Leave  -->
+                        <ng-container *ngIf="form.controls['WorkStatus'].value==3">
+                            <!-- question-2 -->
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <h4>2.{{ 'wfh.RiskLevel.question' | translate }} <span class="text-danger">*</span>
+                                    </h4>
+                                    <img src="../../../../../assets/images/f000.png" class="img-fluid" alt="">
+                                    <p class="font-italic">{{ 'wfh.RiskLevel.description1' | translate }}</p>
+                                    <p class="font-italic">{{ 'wfh.RiskLevel.description2' | translate }}</p>
+                                    <p class="font-italic">
+                                        {{ 'wfh.RiskLevel.description3' | translate }}</p>
+                                    <p class="font-italic">
+                                        {{ 'wfh.RiskLevel.description4' | translate }}
+                                    </p>
+                                    <p class="font-italic">
+                                        {{ 'wfh.RiskLevel.description5' | translate }}
+                                    </p>
+
+                                    <p class="font-italic">
+                                        {{ 'wfh.RiskLevel.description6' | translate }}
+                                    </p>
+                                    <p class="font-italic">{{ 'wfh.RiskLevel.description7' | translate }}</p>
+
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="0" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer1' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="1" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer2' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="2" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer3' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="3" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer4' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="4" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer5' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                    <div class="row ml-2 align-items-center">
+                                        <validation-field-group [group]="form" controlName="RiskLevel" [formSubmitAttempt]="formSubmitAttempt">
+                                            <input type="radio" value="5" [formControlName]="'RiskLevel'" aria-label="Radio button for following text input">
+                                            <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.RiskLevel.answer6' | translate }}</label>
+                                        </validation-field-group>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- question-2 -->
+
+                            <!-- case F0,F1,F4,F5 -->
+                            <ng-container *ngIf="form.controls['RiskLevel'].value==0||form.controls['RiskLevel'].value==1||form.controls['RiskLevel'].value==4||form.controls['RiskLevel'].value==5">
+                                <!-- question-3 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>3.{{ 'wfh.HealthCondition.question' | translate }} <span class="text-danger">*</span>
+                                        </h4>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="1" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer1' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="2" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer2' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-3 -->
+
+                                <!-- case I'm in good -->
+                                <ng-container *ngIf="form.controls['HealthCondition'].value==1">
+                                    <!-- question-4 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>4.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-4 -->
+
+                                    <!-- question-5 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>5.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-5 -->
+                                </ng-container>
+                                <!-- case I'm in good -->
+
+                                <!-- case I'm sick -->
+                                <ng-container *ngIf="form.controls['HealthCondition'].value==2">
+                                    <!-- question-4 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>4.{{ 'wfh.Symptoms.question' | translate }} <span class="text-danger">*</span>
+                                            </h4>
+                                            <validation-field-group [group]="form" controlName="Symptoms" [formSubmitAttempt]="formSubmitAttempt">
+                                                <ng-container *ngIf="symptomsList.length" [formArrayName]="'Symptoms'">
+                                                    <div class="row ml-3 form-check" *ngFor="let symptoms of symptomsList; let i = index">
+                                                        <ng-container *ngIf="symptomsList[i].name!='wfh.Symptoms.answer5'">
+                                                            <input class="form-check-input" type="checkbox" [value]="symptoms.id" id="{{'defaultCheck'+i}}" (change)="onCheckboxChange($event)">
+                                                            <label class="form-check-label" for="{{'defaultCheck'+i}}">
+                                                                {{symptomsList[i].name | translate}}
+                                                            </label>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="symptomsList[i].name=='wfh.Symptoms.answer5'">
+                                                            <input *ngIf="!symptomsChecked" class="form-check-input" type="checkbox" [value]="symptoms.id" disabled>
+                                                            <input *ngIf="symptomsChecked" class="form-check-input" type="checkbox" checked [value]="symptoms.id" disabled>
+                                                            <input type="text" class="col-4 form-control" (change)="symptomsOrtherChange($event)" placeholder="{{'wfh.Symptoms.answer5' | translate}}">
+                                                        </ng-container>
+                                                    </div>
+                                                </ng-container>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                    <!-- question-4 -->
+
+                                    <!-- question-5 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>5.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-5 -->
+
+                                    <!-- question-6 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>6.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-6 -->
+                                </ng-container>
+                                <!-- case I'm sick -->
+                            </ng-container>
+                            <!-- case F0,F1,F4,F5 -->
+
+                            <!-- case F2,F3 -->
+                            <ng-container *ngIf="form.controls['RiskLevel'].value==2||form.controls['RiskLevel'].value==3">
+
+                                <ng-container *ngIf="form.controls['RiskLevel'].value==2">
+                                    <!-- question-3 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>3.{{ 'wfh.F2RiskDesc.question' | translate }} <span class="text-danger">*</span></h4>
+                                            <img src="../../../../../assets/images/f001.png" class="img-fluid" alt="" srcset="">
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="F2RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="1" [formControlName]="'F2RiskDesc'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F2RiskDesc.answer1' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="F2RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="2" [formControlName]="'F2RiskDesc'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F2RiskDesc.answer2' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-3 -->
+                                </ng-container>
+
+                                <ng-container *ngIf="form.controls['RiskLevel'].value==3">
+                                    <!-- question-3 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>3.{{ 'wfh.F3RiskDesc.question' | translate }} <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="F3RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="1" [formControlName]="'F3RiskDesc'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F3RiskDesc.answer1' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="F3RiskDesc" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="radio" value="2" [formControlName]="'F3RiskDesc'" aria-label="Radio button for following text input">
+                                                    <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.F3RiskDesc.answer2' | translate }}</label>
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-3 -->
+                                </ng-container>
+
+                                <!-- question-4 -->
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <h4>4.{{ 'wfh.HealthCondition.question' | translate }} <span class="text-danger">*</span>
+                                        </h4>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="1" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer1' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                        <div class="row ml-2 align-items-center">
+                                            <validation-field-group [group]="form" controlName="HealthCondition" [formSubmitAttempt]="formSubmitAttempt">
+                                                <input type="radio" value="2" [formControlName]="'HealthCondition'" aria-label="Radio button for following text input">
+                                                <label for="staticEmail" class="col-auto col-form-label">{{ 'wfh.HealthCondition.answer2' | translate }}</label>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- question-4 -->
+
+                                <!-- case I'm in good -->
+                                <ng-container *ngIf="form.controls['HealthCondition'].value==1">
+                                    <!-- question-5 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>5.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-5 -->
+
+                                    <!-- question-6 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>6.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-6 -->
+                                </ng-container>
+                                <!-- case I'm in good -->
+
+                                <!-- case I'm sick -->
+                                <ng-container *ngIf="form.controls['HealthCondition'].value==2">
+                                    <!-- question-5 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>5.{{ 'wfh.Symptoms.question' | translate }} <span class="text-danger">*</span>
+                                            </h4>
+                                            <validation-field-group [group]="form" controlName="Symptoms" [formSubmitAttempt]="formSubmitAttempt">
+                                                <ng-container *ngIf="symptomsList.length" [formArrayName]="'Symptoms'">
+                                                    <div class="row ml-3 form-check" *ngFor="let symptoms of symptomsList; let i = index">
+                                                        <ng-container *ngIf="symptomsList[i].name!='wfh.Symptoms.answer5'">
+                                                            <input class="form-check-input" type="checkbox" [value]="symptoms.id" id="{{'defaultCheck'+i}}" (change)="onCheckboxChange($event)">
+                                                            <label class="form-check-label" for="{{'defaultCheck'+i}}">
+                                                                {{symptomsList[i].name | translate}}
+                                                            </label>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="symptomsList[i].name=='wfh.Symptoms.answer5'">
+                                                            <input *ngIf="!symptomsChecked" class="form-check-input" type="checkbox" [value]="symptoms.id" disabled>
+                                                            <input *ngIf="symptomsChecked" class="form-check-input" type="checkbox" checked [value]="symptoms.id" disabled>
+                                                            <input type="text" class="col-4 form-control" (change)="symptomsOrtherChange($event)" placeholder="{{'wfh.Symptoms.answer5' | translate}}">
+                                                        </ng-container>
+                                                    </div>
+                                                </ng-container>
+                                            </validation-field-group>
+                                        </div>
+                                    </div>
+                                    <!-- question-5 -->
+
+                                    <!-- question-6 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>6.{{ 'wfh.PersonInteractedWith.question' | translate }}
+                                                <span class="text-danger">*</span></h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <validation-field-group [group]="form" controlName="PersonInteractedWith" [formSubmitAttempt]="formSubmitAttempt">
+                                                    <input type="text" class="col-auto form-control" [formControlName]="'PersonInteractedWith'" placeholder="{{ 'wfh.PersonInteractedWith.answer1' | translate }}">
+                                                </validation-field-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-6 -->
+
+                                    <!-- question-7 -->
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <h4>7.{{ 'wfh.AdditionalComments.question' | translate }}</h4>
+                                            <div class="row ml-2 align-items-center">
+                                                <textarea name="" id="" cols="30" rows="5" class="col-auto form-control" [formControlName]="'AdditionalComments'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- question-7 -->
+                                </ng-container>
+                                <!-- case I'm sick -->
+                            </ng-container>
+                            <!-- case F2,F3 -->
+                        </ng-container>
+                        <!-- case Leave  -->
+
+
+                        <!-- footer -->
+                        <div class="row mt-3 mb-2">
+                            <div class="col-12">
+                                <button type="button" [disabled]="loading" class="btn bg-custom text-light btn-lg btn-block col-lg-3 col-sm-6" (click)="onSubmit()">{{'wfh.submit' | translate}}</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block col-lg-3 col-sm-6" (click)="onReset()">{{'wfh.reset' | translate}}</button>
+                            </div>
+                        </div>
+                        <!-- footer -->
+                    </ng-container>
+                    <!-- form -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+.card-dark {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    text-align: center;
+    // border: 1px solid #ddd;
+}
+.card-content-dark {
+    padding-top: 30px;
+    padding-bottom: 70px;
+    background-color: #d7d7d7;
+    // border: 1px solid #ddd;
+}
+.card-content2-dark {
+    padding-top: 50px;
+    padding-bottom: 94px;
+    background-color: #d7d7d7;
+    // border: 1px solid #ddd;
+}
+
+.div-center {
+    width: 75%;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+p {
+    font-size: 14px;
+}
+label {
+    font-weight: bold;
+    margin-bottom: -4rem;
+}
+.scroll {
+    // padding-top: 12px;
+    padding-bottom: 600px;
+    background-color: #d7d7d7;
+    // overflow-y: auto;
+    overflow-x: hidden;
+    height: 700px;
+    height: 400px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 8px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(158, 42, 42); 
+    border-radius: 8px;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(114, 40, 40); 
+  }
+
+  .input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .icon {
+    padding: 10px;
+    background: rgba(190, 190, 190, 0.979);
+    color: rgb(87, 87, 87);
+    min-width: 30px;
+    height: 37px;
+    margin-top: 6.5px;
+    text-align: center;
+    border-radius: 3px;
+  }
+  
+//   .input-field {
+//     width: 100%;
+//     padding: 10px;
+//     outline: none;
+//   }
+
+table {
+  // font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+table td, table th {
+  padding: 8px;
+  text-align: left;
+}
+table tr:nth-child(even){background-color: #888888;}
+table tr:hover {background-color: #b8bcbd63;}
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: rgb(36, 36, 36);
+  color: white;
+  text-align: left;
+  font-weight: normal;
+}

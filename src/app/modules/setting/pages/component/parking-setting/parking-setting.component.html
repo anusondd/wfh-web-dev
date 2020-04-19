@@ -1,0 +1,38 @@
+<div class="row mb-3">
+    <div class="col-12">
+        <h1>{{'setting.parking.title' | translate }}</h1>
+    </div>
+</div>
+<div class="col-12 mb-3" [formGroup]="form">
+    <div class="row form-group">
+        <label for="staticEmail" class="col-2 col-form-label text-light">{{'setting.parking.CODE' | translate }}</label>
+        <div class="col-4">
+            <validation-field-group [group]="form" controlName="code" [formSubmitAttempt]="formSubmitAttempt">
+                <input class="form-control" type="text" [formControlName]="'code'" />
+            </validation-field-group>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label for="staticEmail" class="col-2 col-form-label text-light">{{'setting.parking.NAME' | translate }}</label>
+        <div class="col-4">
+            <validation-field-group [group]="form" controlName="name" [formSubmitAttempt]="formSubmitAttempt">
+                <input class="form-control" type="text" [formControlName]="'name'" />
+            </validation-field-group>
+        </div>
+    </div>
+    <div class="row form-group">
+        <label for="staticEmail" class="col-2 col-form-label text-light">{{'setting.parking.PROVICE' | translate }}</label>
+        <div class="col-4">
+            <validation-field-group [group]="form" controlName="proviceCode" [formSubmitAttempt]="formSubmitAttempt">
+                <ng-select [ngClass]="'text-left'" [formControlName]="'proviceCode'" [clearable]="false" [items]="proviceList" bindLabel="name_in_thai" bindValue="code" [markFirst]="true" placeholder="โปรดระบุ">
+                </ng-select>
+            </validation-field-group>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <p [class.text-danger]="true">{{infoMessage}}</p>
+    </div>
+    <div class="row mb-3">
+        <button type="button" class="btn  btn-success ml-2" (click)="save()">{{'save' | translate }}</button>
+    </div>
+</div>

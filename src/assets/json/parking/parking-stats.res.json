@@ -1,0 +1,14 @@
+{
+    "title": "หัวเรื่อง",
+    "description": "รายละเอียด",
+    "data": {
+        "_id": "1",
+        "code":"",
+        "name":"",
+        "empty":0,
+        "parking":0,
+        "reserve":0,
+        "disconnect":0,
+        "timeUpdateData": ""
+    }
+}

@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card mb-3 border border-light">
+            <div class="card-body text-center text-light bg-dark align-middle">
+                <p>วันเวลาเริ่ม {{convertDate2(model.startDate)}} - วันเวลาสิ้นสุด {{convertDate2(model.stopDate)}}
+                    จํานวนการใช้งาน ทั้งหมด {{total}} ครั้ง</p>
+            </div>
+        </div>
+        <div>
+            <table mat-table [dataSource]="dataSensor" matSort class="mat-elevation-z8">
+                <ng-container matColumnDef="no">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+                    <td mat-cell *matCellDef="let item; let i = index;" class="text-center"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Sensor </th>
+                    <td mat-cell *matCellDef="let item" class="text-center"> {{item.sensorID}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="position">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ชื่อที่จอด </th>
+                    <td mat-cell *matCellDef="let item" class="text-center"> {{item.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="timeStart">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> เวลาเข้า (ล่าสุด) </th>
+                    <td mat-cell *matCellDef="let item" class="text-center">
+                        <ng-container *ngIf="item.lastData">
+                            {{(item.lastData.status=='parking')?convertDate(item.lastData.timestamp):'-'}}
+                        </ng-container>
+                        <ng-container *ngIf="!item.lastData">-</ng-container>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="timeOut">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> เวลาออก (ล่าสุด) </th>
+                    <td mat-cell *matCellDef="let item" class="text-center">
+                        <ng-container *ngIf="item.lastData">
+                            {{(item.lastData.status=='empty')?convertDate(item.lastData.timestamp):'-'}}</ng-container>
+                        <ng-container *ngIf="!item.lastData">-</ng-container>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="timeDis">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> เวลาขาดการเชื่อมต่อ (ล่าสุด) </th>
+                    <td mat-cell *matCellDef="let item" class="text-center">
+                        <ng-container *ngIf="item.lastData">
+                            {{(item.lastData.status=='distconnect')?convertDate(item.lastData.timestamp):'-'}}
+                        </ng-container>
+                        <ng-container *ngIf="!item.lastData">-</ng-container>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> รวม </th>
+                    <td mat-cell *matCellDef="let item" class="text-center"> {{item.count}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card-dark">{{ "report.searchData" | translate }}</div>
+        <div class="card-content-dark height130">
+            <div class="div-center">
+                <div [formGroup]="form">
+                    <label for="startDate">{{ "report.startDate" | translate }}</label>
+                    <div class="input-container">
+                        <validation-field-group [group]="form" controlName="startDate"
+                            [formSubmitAttempt]="formSubmitAttempt">
+                            <input class="input-field" type="text" formControlName="startDate" placeholder="mm/dd/yyyy"
+                                class="form-control" bsDatepicker>
+                        </validation-field-group>
+                        <i class="fa fa-calendar icon"></i>
+                    </div>
+                    <label for="endDate">{{ "report.endDate" | translate }}</label>
+                    <div class="input-container">
+                        <validation-field-group [group]="form" controlName="stopDate"
+                            [formSubmitAttempt]="formSubmitAttempt">
+                            <input class="input-field" type="text" formControlName="stopDate" placeholder="mm/dd/yyyy"
+                                class="form-control" bsDatepicker>
+                        </validation-field-group>
+                        <i class="fa fa-calendar icon"></i>
+                    </div>
+                    <button type="submit" class="button-login" (click)="searchTransaction()">{{ "report.search" | translate }}</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card-dark">{{ "report.downloadFile" | translate }}</div>
+        <div class="card-content2-dark height130" [class.loading]="loading" >
+            <ngx-loading [show]="loading" [config]="config" [template]="loadingTemplate"></ngx-loading>
+            <ng-container *ngIf="!loading">
+                <div class="div-center">
+                    <P><b>{{ "report.downloadText" | translate }}</b></P>
+                    <button class="button-login" (click)="downloadFile()">
+                        <i class="material-icons md-light md-36 align-middle">save</i>
+                        <span class="align-middle">{{ "report.download" | translate }}</span></button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

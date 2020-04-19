@@ -1,0 +1,166 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "variables";
+@import "../fonts/font.css";
+
+@import "~material-design-icons/iconfont/material-icons.css";
+
+// noti
+@import "~ng-snotify/styles/material";
+// @import "~ng-snotify/styles/dark";
+// @import "~ng-snotify/styles/simple";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+// @import "~ng-zorro-antd/style/index.min.css"; /* Import basic styles */
+// @import "~ng-zorro-antd/button/style/index.min.css"; /* Import styles of the component */
+
+.bg-gray-4 {
+  background-color: $color-gray-4;
+}
+
+.bg-blue-1 {
+  background-color: $color-blue-1;
+}
+
+.bg-blue-3 {
+  background-color: $color-blue-3;
+}
+
+.border-radius25 {
+  border-radius: 25px;
+  opacity: 1;
+}
+
+.border-shadow {
+  box-shadow: 0px 2px 4px $color-gray-5;
+  border-radius: 49px;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.border-top-radius25 {
+  height: 70px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  opacity: 1;
+}
+
+.text-top-card {
+  text-align: center;
+  letter-spacing: 0;
+  color: $color-gray-3 !important;
+  opacity: 1;
+}
+
+.px60 {
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+
+.px60 img {
+  height: 100%;
+}
+
+.px200 {
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+.px200 img {
+  height: 100%;
+}
+
+.bg-dark {
+  background-color: rgb(58, 58, 58);
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 6px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type="password"],
+select {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 6px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type="date"],
+select {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 6px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.button-login {
+  width: 100%;
+  background-color: #2b73ad;
+  color: white;
+  padding: 9px 20px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.button-login:hover {
+  background-color: hsl(207, 61%, 36%);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.validation-message {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 90%;
+  color: lighten($color-error, 10%);
+  text-align: -webkit-right;
+}
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn{
+  .btn-icon{
+      display: block;
+  }
+  .btn-content{
+      display: none;
+  }
+}
+
+.btn:hover {
+  .btn-icon{
+      display: none;
+  }
+  .btn-content{
+      display: block;
+  }
+}
+
+.loading {
+  // height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 0 15px 15px 0;
+  padding: 15px;
+  border: 1px #ccc solid;
+  border-radius: 4px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

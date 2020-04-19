@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://apgwd.scg.com",
+      "secure": false
+    }
+  }

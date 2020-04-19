@@ -1,0 +1,105 @@
+<div class="row mb-3">
+  <h1>{{ "setting.manage.title" | translate }}</h1>
+</div>
+<button class="button-create" (click)="addRow()">
+  <i class="material-icons md-light md-36 align-middle">add</i><br>
+  {{ "setting.manage.create" | translate }}
+</button>
+
+<ng-container *ngIf="loading">
+  <div class="loading setting-loading">
+    <ngx-loading [show]="loading" [config]="config" [template]="loadingTemplate"></ngx-loading>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading">
+  <div class="row mb-3 mt-3" *ngFor="let row of parkingRow; let i = index">
+    <div class="col-12">
+      <div class="card border bg-dark border-light">
+        <div class="card-header text-white border-bottom">
+          <div class="d-flex justify-content-between">
+            <div class="p-2 bd-highlight">
+              <h2>{{ "setting.manage.row" | translate }} {{row.name}}</h2>
+            </div>
+            <div class="p-2 bd-highlight"></div>
+            <div class="p-2 bd-highlight">
+              <button type="button" class="btn btn-light" (click)="selectRow(i,row)">
+                <i class="material-icons md-light md-36 align-middle">delete_forever</i>
+                {{ "setting.manage.REMOVE" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body text-white">
+          <div class="row">
+            <div class="col-3 mb-2" *ngFor="let box of row.parkingBox; let j = index">
+              <app-parking-box [box]="box" [j]="j" [i]="i" [senseorList]="senseorList" (select)="emitBox($event)"
+                (submit)="submitBox($event)"></app-parking-box>
+            </div>
+            <div class="col-3 mb-2">
+              <button type="button" class="btn btn-dark w-100 h-100 border-light parking-box-add"
+                (click)="addBox(i,row)">
+                <i class="material-icons md-light md-36 align-middle">add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="button-create" (click)="addRow()">
+    <i class="material-icons md-light md-36 align-middle">add</i><br>
+    {{ "setting.manage.create" | translate }}
+  </button>
+</ng-container>
+
+
+
+<!-- modal -->
+<div class="modal fade modal-tabs modal-stack" bsModal #removeRowM="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-tab-content clear-bg-color pt-5 pb-5">
+      <div class="row mt-5 mb-5">
+        <div class="col-12 text-center">
+          <p>{{removeRowMassage}}</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-12">
+          <button type="button" class="btn btn-dark mr-2" (click)="removeRowM.hide()">
+            {{'cancle' | translate }}
+          </button>
+          <button type="button" class="btn btn-success mr-2" (click)="removeRow(this.indexRow)">
+            {{'ok' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-tabs modal-stack" bsModal #removeBoxM="bs-modal" tabindex="-1" role="dialog"
+  aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content modal-tab-content clear-bg-color pt-5 pb-5">
+      <div class="row mt-5 mb-5">
+        <div class="col-12 text-center">
+          <p>{{removeBoxMassage}}</p>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-12">
+          <button type="button" class="btn btn-dark mr-2" (click)="removeBoxM.hide()">
+            {{'cancle' | translate }}
+          </button>
+          <button type="button" class="btn btn-success mr-2" (click)="removeBox(this.indexRow,this.indexBox)">
+            {{'ok' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal -->

@@ -1,0 +1,192 @@
+{
+    "login": {
+        "title": "Please Sign In",
+        "description": "Work from Home / Work at Office Daily Report",
+        "message_error": "This email cannot be found in the system.",
+        "input1": "Company Name",
+        "input2": "Manager Email",
+        "input3": "Employee Email",
+        "submit": "Login"
+    },
+    "sensor": {
+        "title": "Sensor Status",
+        "description": "LastUpdateData",
+        "button-open": "OPEN PARK",
+        "button-close": "CLOSE PARK",
+        "Parking": "Parking",
+        "Reserved": "Reserved",
+        "Offline": "Offline",
+        "Empty": "Empty"
+    },
+    "parkingStats": {
+        "row": "ROW",
+        "box": "BOX"
+    },
+    "weekReport": {
+        "title": "Weekly Report."
+    },
+    "mouthReport": {
+        "title": "Monthly Report."
+    },
+    "setting": {
+        "parking": {
+            "title": "Setting Park",
+            "CODE": "CODE",
+            "NAME": "NAME",
+            "PROVICE": "PROVICE"
+        },
+        "sensor": {
+            "title": "Setting Sensor",
+            "USERNAME": "USERNAME",
+            "PASSWORD": "PASSWORD",
+            "URL": "URL",
+            "test": "Test Connection"
+        },
+        "manage": {
+            "title": "Setting Park",
+            "row": "ROW",
+            "create": "create",
+            "REMOVE": "REMOVE",
+            "box": {
+                "BoxName": "BoxName",
+                "ID": "ID Sensor",
+                "Status": "Status",
+                "Edit": "Edit",
+                "Remove": "Remove"
+            }
+        }
+    },
+    "report": {
+        "searchData": "Data search",
+        "startDate": "Date Start",
+        "endDate": "Date End",
+        "search": "Search",
+        "downloadFile": "Download File",
+        "downloadText": "You can print the page you are viewing.",
+        "download": "Download"
+    },
+    "counter": {
+        "title": "Counter Status",
+        "In": "Counter In",
+        "Out": "Counter Out",
+        "usePark": "Use",
+        "noPark": "Don't use"
+    },
+    "ok": "OK",
+    "cancel": "Cancel",
+    "save": "SAVE",
+    "parking": "Parking",
+    "reserve": "Reserved",
+    "disconnect": "Offline",
+    "empty": "Empty",
+    "wfh": {
+        "title": "Health Status Daily Report",
+        "description": "As your well being is our top priority, please strongly follow the company COVID-19 guidelines. Please submit Health Status Daily Report 2 times per day for workday (07.00 a.m. - 08.00 a.m. , 04.30 p.m. - 05.30 p.m.) and 1 time per day if you take leave or for weekend or holiday within 05.00 p.m.",
+        "welcome1": "Hello",
+        "welcome2": "when you submit this form. The owner will be able to see your name and email address.",
+        "wraning": "necessary",
+        "thank": " Thanks!",
+        "sended": "You response has been submitted.",
+        "sendOrther": "Submit another response",
+        "submit": "Send",
+        "reset": "Reset",
+        "SubmitterEmail": {
+            "question": "",
+            "answer1": ""
+        },
+        "CompanyName": {
+            "question": "",
+            "answer1": ""
+        },
+        "ManagerEmail": {
+            "question": "",
+            "answer1": ""
+        },
+        "ManagerName": {
+            "question": "",
+            "answer1": ""
+        },
+        "SubmissionDateTime": {
+            "question": "",
+            "answer1": ""
+        },
+        "CheckInDate": {
+            "question": "",
+            "answer1": ""
+        },
+        "WorkStatus": {
+            "question": "Please select your status",
+            "answer1": "Work from Home",
+            "answer2": "Work at Office or Plant",
+            "answer3": "Annual leave, sick Leave, other leave or holiday"
+        },
+        "CheckInTime": {
+            "question": "Please select check-in, check-out",
+            "answer1": "Check-in 07.00 a.m. - 08.00 a.m.",
+            "answer2": "Check-out 04.30 p.m. - 05.30 p.m."
+        },
+        "Task1": {
+            "question": "Task 1",
+            "answer1": "Answer"
+        },
+        "Task2": {
+            "question": "Task 2",
+            "answer1": "Answer"
+        },
+        "Task3": {
+            "question": "Task 3",
+            "answer1": "Answer"
+        },
+        "HealthCondition": {
+            "question": "How are you?",
+            "answer1": "I'm in good health",
+            "answer2": "I'm sick"
+        },
+        "PersonInteractedWith": {
+            "question": "Whom do you has close contact to?",
+            "answer1": "Answer"
+        },
+        "Symptoms": {
+            "question": "Please describe your symptoms",
+            "answer1": "Fever",
+            "answer2": "Cough",
+            "answer3": "Sore throat",
+            "answer4": "Shortness of breath",
+            "answer5": "Other"
+        },
+        "AdditionalComments": {
+            "question": "Any support needed?",
+            "answer1": "Answer"
+        },
+        "RiskLevel": {
+            "question": "Risk Self-Assessment",
+            "description1": "Definition of F0-F5",
+            "description2": "F0 = You have tested positive for COVID-19",
+            "description3": "F1 = You have had close contact with F0",
+            "description4": "F2 = You have had close contact with F1 or you have came back from 19 countries which company announced as Group1",
+            "description5": "F3 = You have had close contact with F2, or people who came back from 19 countries which company announced as group1, or you have came back from contries which are not in Group1",
+            "description6": "F4 =  you have had close contact with people who came back from contries which are not in Group1",
+            "description7": "F5 =  You are not F0-F4",
+            "answer1": "You have tested positive for COVID-19",
+            "answer2": "You have had close contact with F0",
+            "answer3": "You have had close contact with F1",
+            "answer4": "You have had close contact with F2",
+            "answer5": "You have had close contact with people who came back from contries which are not in Group1",
+            "answer6": "You are not F0-F4"
+        },
+        "F2RiskDesc": {
+            "question": "What Group of F2 are you in?",
+            "answer1": "You have had close contact with F1",
+            "answer2": "You have came back from 19 countries which company announced as Group1"
+        },
+        "F3RiskDesc": {
+            "question": "What Group of F3 are you in?",
+            "answer1": "You have had close contact with F2, or people who came back from 19 countries which company announced as group1",
+            "answer2": "You have came back from contries which are not in Group1"
+        },
+        "ResponseID": {
+            "question": "",
+            "answer1": ""
+        }
+    }
+}

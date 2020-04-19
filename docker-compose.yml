@@ -1,0 +1,11 @@
+version: '3.3' # We use version 3.5 syntax
+services: # Here we define our service(s)
+    
+    wfh-web:
+        container_name: wfh-web
+        ports:
+            - "4200:4200/tcp"
+        restart: always
+        build:
+            context: ./
+            dockerfile: Dockerfile # Location of our Dockerfile

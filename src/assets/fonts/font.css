@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('Roboto-Regular.eot');
+    src: url('Roboto-Regular.eot') format('embedded-opentype'),
+         url('Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lato-Regular';
+    src: url('Lato-Regular.eot');
+    src: url('Lato-Regular.eot') format('embedded-opentype'),
+         url('Lato-Regular.ttf') format('truetype');
+}

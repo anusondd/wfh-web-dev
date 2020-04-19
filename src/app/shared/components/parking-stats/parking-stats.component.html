@@ -1,0 +1,131 @@
+<div class="p-2 mb-3 parking border border-light">
+    <ng-container *ngIf="loading">
+        <ngx-loading [show]="loading" [config]="config" [template]="loadingTemplate"></ngx-loading>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+        <div class="row p-3 mb-3" *ngFor="let row of parkingDataList">
+            <div class="col-lg-2 col-md-3">
+                <div class="card border border-light bg-light mb-3 mr-2">
+                    <div class="card-header bg-dark text-center">
+                        <h3 class="text-light">{{'parkingStats.row' | translate }}</h3>
+                        <p><span class="text-light font-weight-bold text-title-card">{{row.name}}</span></p>                        
+                    </div>
+                    <div class="card-body bg-light">
+                        <h6 class="card-title text-center">{{row.empty}}</h6>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <!-- box -->
+            <div class="col-lg-10 col-md-9">
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-6 mb-3" *ngFor="let box of row.parkingBox" 
+                    (click)="selectBox(box)" >
+                        <div class="card parking-box">
+                            <div class="card-header text-center font-weight-bold"
+                                [class.bg-primary]="box.status=='parking'" [class.bg-danger]="box.status=='disconnect'"
+                                [class.bg-danger]="box.status=='disconnect'" [class.bg-dark]="box.status=='reserve'"
+                                [class.text-light]="box.status=='reserve'" [class.bg-success]="box.status=='empty'">
+                                <h6>{{'parkingStats.box' | translate }}</h6> 
+                                <p>{{box.name}}</p>                              
+                            </div>
+                            <div class="card-body text-center">
+                                <span class="m-auto" *ngIf="box.status === 'empty'">
+                                    <i class="material-icons size-icon-lg text-light">
+                                        panorama_fish_eye
+                                    </i>
+                                </span>
+                                <span class="m-auto" *ngIf="box.status === 'parking'">
+                                    <i class="material-icons size-icon-lg">
+                                        directions_car
+                                    </i>
+                                </span>
+                                <span class="m-auto" *ngIf="box.status === 'reserve'">
+                                    <i class="material-icons size-icon-lg text-dark">
+                                        block
+                                    </i>
+                                </span>
+                                <span class="m-auto" *ngIf="box.status === 'disconnect'">
+                                    <i class="material-icons size-icon-lg text-danger">
+                                        report
+                                    </i>
+                                </span>
+                                <p class="text.dark">{{ box.status | translate }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- box -->
+        </div>
+    </ng-container>
+</div>
+
+
+<!-- modal -->
+<div class="modal fade modal-tabs modal-stack" bsModal #unReserveModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-tab-content clear-bg-color pt-5 pb-5">
+            <div class="row mt-5 mb-5">
+                <div class="col-12 text-center">
+                    <p>{{unReserveMassage}}</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-12">
+                    <button type="button" class="btn btn-dark mr-2" (click)="unReserveModal.hide()">
+                        {{'cancel' | translate }}
+                    </button>
+                    <button type="button" class="btn btn-success mr-2" (click)="unReserve()">
+                        {{'ok' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-tabs modal-stack" bsModal #reserveModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-tab-content clear-bg-color pt-5 pb-5">
+            <div class="row mt-5 mb-5">
+                <div class="col-12 text-center">
+                    <p>{{reserveMassage}}</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-12">
+                    <button type="button" class="btn btn-dark mr-2" (click)="reserveModal.hide()">
+                        {{'cancel' | translate }}
+                    </button>
+                    <button type="button" class="btn btn-success mr-2" (click)="reserve()">
+                        {{'ok' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-tabs modal-stack" bsModal #infoModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-static-name">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-tab-content clear-bg-color pt-5 pb-5">
+            <div class="row mt-5 mb-5">
+                <div class="col-12 text-center">
+                    <p>{{infoMassage}}</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-12">
+                    <button type="button" class="btn btn-success mr-2" (click)="infoModal.hide()">
+                        {{'ok' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->

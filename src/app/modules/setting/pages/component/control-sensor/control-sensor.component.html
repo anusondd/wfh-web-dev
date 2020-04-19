@@ -1,0 +1,37 @@
+<div class="row mb-3">
+  <div class="col-12">
+    <h1>{{'setting.sensor.title' | translate }}</h1>
+    <p class="text-danger mt-2" >*กรุณาทดสอบการเชื่อมต่อข้อมูลทุกครั้งก่อนบันทึกข้อมูล</p>
+  </div>
+</div>
+<div class="col-12 mb-3" [formGroup]="form">
+  <div class="row form-group">
+    <label for="staticEmail" class="col-2 col-form-label text-light">{{'setting.sensor.USERNAME' | translate }}</label>
+    <div class="col-4">
+      <validation-field-group [group]="form" controlName="username" [formSubmitAttempt]="formSubmitAttempt">
+        <input class="form-control" type="text" [formControlName]="'username'" />
+      </validation-field-group>
+    </div>
+    <label for="staticEmail" class="col-2 col-form-label text-light">{{'setting.sensor.PASSWORD' | translate }}</label>
+    <div class="col-4">
+      <validation-field-group [group]="form" controlName="password" [formSubmitAttempt]="formSubmitAttempt">
+        <input class="form-control" type="text" [formControlName]="'password'" />
+      </validation-field-group>
+    </div>
+  </div>
+  <div class="row form-group">
+    <label for="staticEmail" class="col-2 col-form-label text-light">{{'setting.sensor.URL' | translate }}</label>
+    <div class="col-10">
+      <validation-field-group [group]="form" controlName="urlSensor" [formSubmitAttempt]="formSubmitAttempt">
+        <input class="form-control" type="text" [formControlName]="'urlSensor'" />
+      </validation-field-group>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <p [class.text-danger]="!disableSubmit" [class.text-success]="disableSubmit" >{{infoMessage}}</p>
+  </div>
+  <div class="row mb-3">
+    <button type="button" class="btn  btn-primary ml-2" (click)="connect()">{{'setting.sensor.test' | translate }}</button>
+    <button type="button" class="btn  btn-success ml-2" [disabled]="!disableSubmit" (click)="save()">{{'save' | translate }}</button>
+  </div>
+</div>
