@@ -5,6 +5,9 @@ import { first, take } from 'rxjs/operators';
 import * as moment from 'moment';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Parser  } from "json2csv";
+import saveAs from 'save-as'
 
 @Component({
   selector: 'app-wfh',
@@ -17,6 +20,7 @@ export class WfhComponent implements OnInit {
   formArray: FormArray;
   formSubmitAttempt: boolean;
   name = null;
+  email = null;
   stateFrom: boolean = false;
 
   language = ""
@@ -73,12 +77,18 @@ export class WfhComponent implements OnInit {
     public router: Router,
     private authService: AuthService,
     public translate: TranslateService,
+    private angularFireAuth: AngularFireAuth,
   ) {
   }
 
   ngOnInit() {
     this.initLanguage()
+    this.angularFireAuth.authState.subscribe(user => {
+      this.email = user.email;
+      this.name = user.displayName;
+    })
     this.buildForm();
+
   }
 
   ngDoCheck() {
@@ -88,17 +98,7 @@ export class WfhComponent implements OnInit {
 
   buildForm() {
 
-    let name = localStorage.getItem("name")
-    let managerEmpoyee = localStorage.getItem("email")
 
-    this.name = name;
-
-    if (name == null) {
-      this.router.navigate(['/login'], {})
-    }
-    if (managerEmpoyee == null) {
-      this.router.navigate(['/login'], {})
-    }
 
     let date = moment().toISOString();
     this.utc = "+" + (new Date().getTimezoneOffset() / 60 * -1)
@@ -106,7 +106,7 @@ export class WfhComponent implements OnInit {
     this.symptomsChecked = false
 
     this.form = this.fb.group({
-      SubmitterEmail: this.fb.control(managerEmpoyee),
+      SubmitterEmail: this.fb.control(this.email),
       // CompanyName: this.fb.control(company),
       // ManagerEmail: this.fb.control(managerMail),
       // ManagerName: this.fb.control(managerMail),
@@ -348,6 +348,7 @@ export class WfhComponent implements OnInit {
       let value = this.form.value;
       value = {
         ...value,
+        SubmitterEmail: this.email,
         SubmissionDateTime: date,
         CheckInDate: date,
         WorkStatus: (value.WorkStatus) ? this.WorkStatusList.find(v => v.id == value.WorkStatus).value : "",
@@ -359,7 +360,7 @@ export class WfhComponent implements OnInit {
         Symptoms: (value.Symptoms) ? value.Symptoms.toString() : ""
       }
 
-      value.Symptoms = (value.HealthCondition=="สุขภาพสมบูรณ์ แข็งแรง")?"":value.Symptoms;
+      value.Symptoms = (value.HealthCondition == "สุขภาพสมบูรณ์ แข็งแรง") ? "" : value.Symptoms;
 
       console.log("value===>", value);
       try {
@@ -384,9 +385,8 @@ export class WfhComponent implements OnInit {
   }
 
   logOut() {
-    localStorage.removeItem("name")
-    localStorage.removeItem("email")
-    this.buildForm();
+    this.authService.signOut();
+    this.router.navigate(['login']);
   }
 
   initLanguage() {
@@ -407,6 +407,24 @@ export class WfhComponent implements OnInit {
     this.language = language
     localStorage.setItem('locale', language);
     this.translate.use(language);
+  }
+
+  report() {
+    this.authService.reportTimeSheet(this.email).then(querySnapshot => {
+      console.log('reportTimeSheet', querySnapshot)
+      let report = querySnapshot.docs.map(doc=> { return doc.data()});
+      console.log('report',report);
+      
+      const json2csvParser = new Parser();
+      const csv = json2csvParser.parse(report);
+
+      console.log('csv',csv);
+      let blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+      saveAs(blob, 'timesheet.csv')
+
+    }).catch(e => {
+      console.log('reportTimeSheet', e)
+    })
   }
 
 }

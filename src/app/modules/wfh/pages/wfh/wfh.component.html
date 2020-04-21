@@ -25,6 +25,10 @@
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-outline-primary" (click)="report()">
+                            <i class="material-icons md-light md-36 align-middle">library_books</i>
+                            <span class="align-middle">Report</span>
+                        </button>
                         <ng-select [(ngModel)]="language" [items]="languageList" bindLabel="name" bindValue="id" [multiple]="false" [readonly]="false" [searchable]="false" [clearable]="false" placeholder="Select" class="col-lg-2 col-sm-6" (change)="changeLang(language)">
                             <ng-template ng-label-tmp let-item="item">
                                 <img class="m-1" height="15" width="15" [src]="item.img" />
@@ -36,7 +40,7 @@
                             <span class="align-middle">Logout</span>
                         </button>
                     </div>
-                    <h5 class="card-title">{{ 'wfh.welcome1' | translate }} {{name}} {{ 'wfh.welcome2' | translate }}
+                    <h5 class="card-title">{{ 'wfh.welcome1' | translate }} {{email}} {{ 'wfh.welcome2' | translate }}
                     </h5>
                     <p class="card-text"> <span class="text-danger">*</span> {{ 'wfh.wraning' | translate }}</p>
                     <!-- form -->

@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginComponent implements OnInit {
 
+  stateForm: string = 'login';
   form: FormGroup;
   formSubmitAttempt: boolean;
   message = null;
@@ -26,51 +27,81 @@ export class LoginComponent implements OnInit {
     public translate: TranslateService,
   ) {
   }
-  
+
   ngOnInit() {
     this.initLanguage()
-    
-    let email = localStorage.getItem('email')
-    let name = localStorage.getItem('name')
-    if (name != null && email != null) {
-      this.router.navigate(['/wfh'], {})
-    } else {
-      localStorage.removeItem("email")
-      localStorage.removeItem("name")
-    }
-    // a-z A-Z 0-9 + @scg.com
     this.form = this.fb.group({
-      username: this.fb.control('', [Validators.required, Validators.minLength(4)]),
-      // username: this.fb.control('', [Validators.required, Validators.minLength(4),Validators.pattern('[A-za-z0-9]*')]),
-      password: this.fb.control('', [Validators.required, Validators.minLength(4)])
+      username: this.fb.control('', [Validators.required, Validators.email]),
+      password: this.fb.control('', [Validators.required, Validators.minLength(4)]),
     });
   }
 
-  login() {
+  switchForm(val) {
+    this.stateForm = val;
+    switch (val) {
+      case 'login':
+        this.form.controls['username'].setValidators([Validators.required, Validators.email])
+        this.form.controls['username'].updateValueAndValidity()
+        this.form.controls['password'].setValidators([Validators.required, Validators.minLength(4)])
+        this.form.controls['password'].updateValueAndValidity()
+        break;
+      case 'register':
+        this.form.controls['username'].setValidators([Validators.required, Validators.email])
+        this.form.controls['username'].updateValueAndValidity()
+        this.form.controls['password'].setValidators([Validators.required, Validators.minLength(4)])
+        this.form.controls['password'].updateValueAndValidity()
+        break;
+      case 'forgetpassword':
+        this.form.controls['username'].setValidators([Validators.required, Validators.email])
+        this.form.controls['username'].updateValueAndValidity()
+        this.form.controls['password'].clearValidators()
+        this.form.controls['password'].updateValueAndValidity()
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  submit() {
     if (this.form.valid) {
       console.log("this.form.value : ", this.form.value);
       this.formSubmitAttempt = false;
+      if (this.stateForm == 'login')
+        this.authService.signIn(this.form.value.username, this.form.value.password)
+          .then(result => {
+            console.log(result);
+            this.router.navigate(['wfh']);
+          })
+          .catch(e => {
+            console.log('message', e.message);
+            this.message = e.message
+          })
 
-      this.authService.login(this.form.value)
-        .then((res) => {
-          console.log('login', res)
-          if (res.data.name == "Error") {
-            this.message = res.data.message;
-            localStorage.removeItem("email")
-            localStorage.removeItem("name")
-          } else {
-            this.router.navigate(['/wfh'], {})
-            localStorage.setItem("email", res.data.mail)
-            localStorage.setItem("name", res.data.name)
-          }
-        }).catch((error) => {
-          console.log('login', error)
-        })
+      if (this.stateForm == 'register')
+        this.authService.signUp(this.form.value.username, this.form.value.password)
+          .then(result => {
+            console.log(result);
+            this.router.navigate(['wfh']);
+          })
+          .catch(e => {
+            console.log(e.message);
+            this.message = e.message
+          })
+
+      if (this.stateForm == 'forgetpassword')
+        this.authService.resetPassword(this.form.value.username)
+          .then(result => {
+            console.log(result);
+          })
+          .catch(e => {
+            console.log(e.message);
+            this.message = e.message
+          })
 
     } else {
       this.formSubmitAttempt = true;
     }
-    // this.router.navigate(['/main'],{})
   }
 
   initLanguage() {

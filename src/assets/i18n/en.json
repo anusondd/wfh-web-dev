@@ -3,9 +3,33 @@
         "title": "Please Sign In",
         "description": "Work from Home / Work at Office Daily Report",
         "message_error": "This email cannot be found in the system.",
-        "input1": "Company Name",
-        "input2": "Manager Email",
-        "input3": "Employee Email",
+        "language": "Language",
+        "input1": "Email",
+        "input2": "Password",
+        "register": "Register",
+        "forgetpassword": "Forget Password",
+        "submit": "Login"
+    },
+    "register": {
+        "title": "Please Sign Up",
+        "description": "Work from Home / Work at Office Daily Report",
+        "message_error": "This email cannot be found in the system.",
+        "language": "Language",
+        "input1": "Email",
+        "input2": "Password",
+        "register": "Register",
+        "forgetpassword": "Forget Password",
+        "submit": "Login"
+    },
+    "forgetpassword": {
+        "title": "Reset Password",
+        "description": "Work from Home / Work at Office Daily Report",
+        "message_error": "This email cannot be found in the system.",
+        "language": "Language",
+        "input1": "Email",
+        "input2": "Password",
+        "register": "Register",
+        "forgetpassword": "Send Email",
         "submit": "Login"
     },
     "sensor": {

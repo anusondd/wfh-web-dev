@@ -4,6 +4,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,21 @@ export class AppComponent implements OnInit {
     private router: Router,
     private title: Title,
     public translate: TranslateService,
+    private angularFireAuth: AngularFireAuth,
     private activatedRoute: ActivatedRoute) {
 
     this.initLanguage()
+
+    this.angularFireAuth.authState
+      .subscribe(user => {
+        // console.log(user);
+        if (user) {
+          this.router.navigate(['wfh']);
+        } else {
+          this.router.navigate(['login']);
+        }
+
+      })
 
   }
 
@@ -39,8 +52,8 @@ export class AppComponent implements OnInit {
   }
 
   changeLang(language: string) {
-    console.log('changeLang',language);
-    
+    console.log('changeLang', language);
+
     localStorage.setItem('locale', language);
     this.translate.use(language);
   }

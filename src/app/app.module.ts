@@ -22,6 +22,12 @@ const config: SocketIoConfig = { url: environment.HOST_API, options: {} };
 import { SnotifyModule, ToastDefaults, SnotifyService } from 'ng-snotify';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,12 +49,17 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     SnotifyModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: createTranslateLoader,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
       },
       isolate: false
-  })
+    }),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireAuthModule,
   ],
   providers: [
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
