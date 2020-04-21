@@ -12,16 +12,6 @@ export const environment = {
   CODE:'01',
   NAME:'PKS-01',
   CODE_NAME:"PKS",
-  firebaseConfig: {
-    apiKey: "AIzaSyAeFzMOM8J437ixF7Xggkd8t2hH_rPqCiQ",
-    authDomain: "wfh-from.firebaseapp.com",
-    databaseURL: "https://wfh-from.firebaseio.com",
-    projectId: "wfh-from",
-    storageBucket: "wfh-from.appspot.com",
-    messagingSenderId: "434775202810",
-    appId: "1:434775202810:web:5760c831eb3c4376036243",
-    measurementId: "G-FSRVTHQD4T"
-  }
 };
 
 /*

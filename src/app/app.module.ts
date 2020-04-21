@@ -28,6 +28,17 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyAeFzMOM8J437ixF7Xggkd8t2hH_rPqCiQ",
+  authDomain: "wfh-from.firebaseapp.com",
+  databaseURL: "https://wfh-from.firebaseio.com",
+  projectId: "wfh-from",
+  storageBucket: "wfh-from.appspot.com",
+  messagingSenderId: "434775202810",
+  appId: "1:434775202810:web:5760c831eb3c4376036243",
+  measurementId: "G-FSRVTHQD4T"
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +66,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
       },
       isolate: false
     }),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
